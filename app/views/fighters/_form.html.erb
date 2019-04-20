@@ -1,10 +1,11 @@
 <%= simple_form_for fighter do |f| %>
   <%= f.input :photo %>
   <%= f.input :photo_cache, as: :hidden %>
-  <%= f.input :name %>
-  <%= f.input :category %>
-  <%= f.input :life_points %>
-  <%= f.input :attack_points %>
+  <%= f.input :name, required: true, placeholder: "Pikachu" %>
+  <%= f.input :life_points, required: true, collection: 1..99 %>
+  <%= f.input :attack_points, required: true, collection: 1..99 %>
 
-  <%= f.submit %>
+  <div class="form-actions">
+    <%= f.button :submit, "Save", class: "btn btn-primary" %>
+  </div>
 <% end %>

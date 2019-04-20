@@ -1,19 +1,22 @@
 class Fighter < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
-  has_many :fights, dependent: :destroy
-  has_many :strokes, dependent: :destroy
-  has_many :fighter_equipements, dependent: :destroy
-  has_many :equipements, through: :fighter_equipements
+  has_many :won_fights, class_name: 'Fight', foreign_key: 'winner_id', dependent: :destroy
+  has_many :lost_fights, class_name: 'Fight', foreign_key: 'loser_id', dependent: :destroy
 
-  validates :name, :life_points, :attack_points, :category, presence: true
+  has_many :given_strokes, class_name: 'Stroke', foreign_key: 'owner_id', dependent: :destroy
+  has_many :received_strokes, class_name: 'Stroke', foreign_key: 'target_id', dependent: :destroy
+
+  validates :name, :life_points, :attack_points, presence: true
   validates :name, uniqueness: true
   validates :name, length: { minimum: 3 }
   validates :life_points, :attack_points, inclusion: { in: ((1..99)),
   message: "should be between 1 and 99" }
   validate :sum_equals_100
 
-  enum category: %i[marketing commercial produit legal]
+  def percentage_of_victory
+    fights
+  end
 
   private
 

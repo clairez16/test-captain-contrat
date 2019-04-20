@@ -12,6 +12,7 @@ class FightersController < ApplicationController
   def create
     @fighter = Fighter.new(fighter_params)
     if @fighter.save
+      redirect_to root_path
     else
       render 'new'
     end
@@ -29,12 +30,15 @@ class FightersController < ApplicationController
   end
 
   def destroy
+    binding.pry
+    @fighter.destroy
+    redirect_to root_path
   end
 
   private
 
   def fighter_params
-    params.require(:fighter).permit(:name, :life_points, :attack_points, :photo, :category)
+    params.require(:fighter).permit(:name, :life_points, :attack_points, :photo)
   end
 
   def set_fighter

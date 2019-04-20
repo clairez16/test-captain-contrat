@@ -1,8 +1,0 @@
-<% @fighters.each do |fighter| %>
-  <div class="fighter-line">
-    <%= cl_image_tag fighter.photo, height: 100, width: 100, crop: :fill %>
-    <p><%= fighter.name %></p>
-    <p><%= fighter.life_points %></p>
-    <p><%= fighter.attack_points %></p>
-  </div>
-<% end %>

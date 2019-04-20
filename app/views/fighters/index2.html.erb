@@ -1,0 +1,64 @@
+<div class="page-container">
+
+  <%= link_to 'Create a new fighter', new_fighter_path, class:'btn btn-primary btn-lg' %>
+
+  <% if @fighters.any? %>
+    <form id="fighter-choices">
+
+      <div class="row">
+        <% @fighters.each do |fighter| %>
+          <div class="col-xs-12 col-md-6">
+            <input type="checkbox" value="<%= fighter.id %>" id="<%= fighter.id %>">
+            <label for="<%= fighter.id %>" class="fighter-choice fighter-card-<%= fighter.id %>  ">
+              <%= cl_image_tag fighter.photo, height: 100, width: 100, crop: :fill, class:'avatar-small' %>
+              <p><%= fighter.name %></p>
+              <p><%= fighter.life_points %></p>
+              <p><%= fighter.attack_points %></p>
+
+              <%= link_to edit_fighter_path(fighter.id) do %>
+                <i class="fas fa-pen"></i>
+              <% end %>
+
+              <%= link_to fighter_path(fighter.id) do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+
+      <input type="submit" class="btn btn-primary" value="Validate my choice">
+    </form>
+
+  <% else %>
+    <p>No fighters</p>
+  <% end %>
+
+</div>
+
+<script type="text/javascript">
+  document.querySelectorAll('input').forEach(function(element) {
+    element.addEventListener('change', function(event) {
+      if (document.querySelectorAll('input:checked').length > 2)  {
+        event.currentTarget.checked = false
+        alert("Please select 2 fighters")
+      } else {
+        let currentFighter = event.currentTarget.value
+        document.querySelector('.fighter-card-' + currentFighter).classList.toggle('active')
+      }
+    })
+  })
+
+  const form = document.querySelector('#fighter-choices')
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    if (document.querySelectorAll('input:checked').length == 1) {
+      alert("Please select 2 fighters")
+    } else {
+      var fighter_1 = document.querySelectorAll('input:checked')[0].value
+      var fighter_2 = document.querySelectorAll('input:checked')[1].value
+      console.log(fighter_1, fighter_2)
+    }
+  } )
+</script>
+

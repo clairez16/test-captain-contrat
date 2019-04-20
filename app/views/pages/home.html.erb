@@ -1,8 +1,48 @@
-<audio id="homemusic" src="audio/music.mp3" type="audio/mpeg" loop></audio>
+<div class="banner">
+  <div class="banner-content">
+    <h1>Le Wagon Berlin</h1>
+    <p>Learn to code with us in Berlin</p>
+    <%= link_to 'Start a fight', new_fight_path, class:'btn btn-primary btn-lg' %>
+  </div>
+</div>
 
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="fighters-index">
+  <h1 class="text-center">All Fighters</h1>
+  <div class="row margin-40px">
+    <% @fighters.each do |fighter| %>
+      <div class="col-xs-12 col-md-6">
+        <div class="fighter-card margin-10px d-flex">
+          <div class="fighter-photo">
+            <%= cl_image_tag fighter.photo, height: 100, width: 100, crop: :fill, class:'avatar-small' %>
+          </div>
+          <div class="fighter-main-infos">
+            <p class="no-margin-bottom text-bold"><%= fighter.name %></p>
+            <p class="no-margin-bottom">Life points: <%= fighter.life_points %></p>
+            <p class="no-margin-bottom">Attack points: <%= fighter.attack_points %></p>
+          </div>
+          <div class="fighter-stat">
 
-<script>
-  document.getElementById("homemusic").play();
-</script>
+          </div>
+          <div class="btns margin-auto">
+            <%= link_to edit_fighter_path(fighter.id) do %>
+              <i class="fas fa-pen"></i>
+            <% end %>
+
+            <%= link_to fighter_path(fighter.id), method: :delete do %>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div class="col-xs-12 col-md-6">
+      <%= link_to new_fighter_path do %>
+        <div class="fighter-card margin-10px">
+          <p>
+            <i class="fas fa-plus"></i>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

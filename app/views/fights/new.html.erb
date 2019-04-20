@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 offset-sm-3">
+      <div class="form">
+        <%= simple_form_for @fight do |f| %>
+          <%= f.input :fighter_1_id, required: true, collection: @fighters %>
+          <%= f.input :equipement_1_id, required: true, collection: @equipements %>
+
+          <%= f.input :fighter_2_id, required: true, collection: @fighters %>
+          <%= f.input :equipement_2_id, required: true, collection: @equipements %>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Start the fight", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
