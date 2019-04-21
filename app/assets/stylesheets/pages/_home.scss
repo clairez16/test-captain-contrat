@@ -1,6 +1,7 @@
 .banner {
   height: 70vh;
-  background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://kitt.lewagon.com/placeholder/cities/berlin');
+  background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://img.pixers.pics/pho_wat(s3:700/FO/70/72/46/84/700_FO70724684_a8651a74781951f6f2ad8c8892569ec7.jpg,700,378,cms:2018/10/5bd1b6b8d04b8_220x50-watermark.png,over,480,328,jpg)/papiers-peints-ring-de-boxe-eclairage-fonce.jpg.jpg');
+  background-position: center 75%;
   color: white;
   text-align: center;
   background-size: cover !important;
@@ -50,10 +51,6 @@
   font-weight: bold
 }
 
-.text-50px{
-  font-weight: 50px !important;
-}
-
 .text-red {
   color: red;
 }
@@ -67,7 +64,7 @@
   opacity: 0.8;
   padding: 20px;
   border-radius: 10px;
-  height: 110px;
+  min-height: 110px;
   &:hover {
     opacity: 1;
     cursor: pointer;
