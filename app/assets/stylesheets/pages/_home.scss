@@ -54,13 +54,17 @@
   font-weight: 50px !important;
 }
 
+.text-red {
+  color: red;
+}
+
 .margin-auto {
   margin: auto !important;
 }
 
 .fighter-card {
   background: #b7b7b7;
-  opacity: 0.4;
+  opacity: 0.8;
   padding: 20px;
   border-radius: 10px;
   height: 110px;
@@ -74,11 +78,11 @@
   }
 
   .fighter-main-infos {
-    flex: 0 0 50%;
+    flex: 0 0 40%;
   }
 
   .fighter-stat {
-    flex: 0 0 20%;
+    flex: 0 0 30%;
   }
 
   .btns {

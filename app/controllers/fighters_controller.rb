@@ -24,13 +24,13 @@ class FightersController < ApplicationController
   def update
     @fighter.assign_attributes(fighter_params)
     if @fighter.save
+      redirect_to root_path
     else
       render 'edit'
     end
   end
 
   def destroy
-    binding.pry
     @fighter.destroy
     redirect_to root_path
   end

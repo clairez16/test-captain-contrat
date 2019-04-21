@@ -1,4 +1,14 @@
 <h1>Winner: <%= @fight.winner.name %></h1>
+<h4>Life points: <%= @fight.winner.life_points %></h1>
+<h4>Attack points: <%= @fight.winner.attack_points %></h1>
 
-  <%= link_to 'Back to home page', root_path, class:'btn btn-primary btn-lg' %>
-  <%= link_to 'New fight', new_fight_path, class:'btn btn-primary btn-lg' %>
+<h1>Loser: <%= @fight.loser.name %></h1>
+<h4>Life points: <%= @fight.loser.life_points %></h1>
+<h4>Attack points: <%= @fight.loser.attack_points %></h1>
+
+<% @strikes.each do |strike| %>
+  <p><%= strike.decorated %></p>
+<% end %>
+
+<%= link_to 'Back to home page', root_path, class:'btn btn-primary btn-lg' %>
+<%= link_to 'New fight', new_fight_path, class:'btn btn-primary btn-lg' %>

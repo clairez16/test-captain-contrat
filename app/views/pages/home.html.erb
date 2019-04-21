@@ -21,7 +21,8 @@
             <p class="no-margin-bottom">Attack points: <%= fighter.attack_points %></p>
           </div>
           <div class="fighter-stat">
-
+            <p class="no-margin-bottom">Victory rate:</p>
+            <p class="no-margin-bottom"><%= fighter.percentage_of_victory %></p>
           </div>
           <div class="btns margin-auto">
             <%= link_to edit_fighter_path(fighter.id) do %>

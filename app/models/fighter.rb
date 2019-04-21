@@ -15,7 +15,11 @@ class Fighter < ApplicationRecord
   validate :sum_equals_100
 
   def percentage_of_victory
-    fights
+    if won_fights.any? || lost_fights.any?
+      won_fights.count * 100 / (won_fights + lost_fights).count
+    else
+      'Never fought'
+    end
   end
 
   private
@@ -23,6 +27,7 @@ class Fighter < ApplicationRecord
   def sum_equals_100
     return unless life_points + attack_points != 100
 
-    errors.add(:base, "The sum of your life points and attack points should be equal to 100")
+    errors.add(:life_points, "The sum of your life points and attack points should be equal to 100")
+    errors.add(:attack_points, "The sum of your life points and attack points should be equal to 100")
   end
 end
