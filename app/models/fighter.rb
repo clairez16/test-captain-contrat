@@ -16,7 +16,9 @@ class Fighter < ApplicationRecord
 
   def percentage_of_victory
     if won_fights.any? || lost_fights.any?
-      won_fights.count * 100 / (won_fights + lost_fights).count
+      total_fights = (won_fights + lost_fights).count
+      stat = won_fights.count * 100 / total_fights
+      "#{stat} % (#{total_fights})"
     else
       'Never fought'
     end

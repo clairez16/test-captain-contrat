@@ -20,12 +20,12 @@ class Fight < ApplicationRecord
   end
 
   def run_fight
-    current_player = rand(2)
+    current_player = rand(2) # chooses randomly first player
 
     until strokes.where(missed: false, target: fighter_1).map(&:impact).sum >= fighter_1.life_points ||
           strokes.where(missed: false, target: fighter_2).map(&:impact).sum >= fighter_2.life_points
 
-      if current_player % 2 == 0
+      if current_player.even?
         Stroke.create(fight: self, owner: fighter_2, target: fighter_1)
       else
         Stroke.create(fight: self, owner: fighter_1, target: fighter_2)
