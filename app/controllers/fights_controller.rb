@@ -1,8 +1,8 @@
 class FightsController < ApplicationController
   def new
     @fight = Fight.new
-    @fighters = Fighter.all
-    @equipements = Equipement.all
+    @fighters = Fighter.all.map(&:decorate_for_form)
+    @equipements = Equipement.all.map(&:decorate_for_form)
   end
 
   def create

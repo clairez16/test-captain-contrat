@@ -24,6 +24,10 @@ class Fighter < ApplicationRecord
     end
   end
 
+  def decorate_for_form
+    [id, "#{name} (Life: #{life_points}, Attack: #{attack_points})"]
+  end
+
   private
 
   def sum_equals_100

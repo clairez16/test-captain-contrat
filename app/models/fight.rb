@@ -43,5 +43,6 @@ class Fight < ApplicationRecord
     end
 
     update(winner: winner, loser: loser)
+    winner.increment!(:experience)
   end
 end

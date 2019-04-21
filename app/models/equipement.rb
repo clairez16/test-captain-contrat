@@ -1,4 +1,5 @@
 class Equipement < ApplicationRecord
-  has_many :fighter_equipements
-  has_many :fighters, through: :fighter_equipements
+  def decorate_for_form
+    [id, "#{name} (Attack: +#{attack_points}, Defense: +#{defense_points})"]
+  end
 end
