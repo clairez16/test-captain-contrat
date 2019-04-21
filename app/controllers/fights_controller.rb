@@ -6,7 +6,6 @@ class FightsController < ApplicationController
   end
 
   def create
-    binding.pry
     fight = Fight.create(fight_params)
     redirect_to fight_path(fight)
   end
