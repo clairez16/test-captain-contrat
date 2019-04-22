@@ -1,14 +1,16 @@
+<% @fight.errors.full_messages.each do |text| %>
+  <p><%= text %></p>
+<% end %>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 offset-sm-3">
       <div class="form">
         <%= simple_form_for @fight do |f| %>
-          <%= f.input :fighter_1_id, required: true, collection: @fighters, label_method: :second, value_method: :first %>
-          <%= f.input :equipement_1_id, required: true, collection: @equipements, label_method: :second, value_method: :first %>
-
-          <%= f.input :fighter_2_id, required: true, collection: @fighters, label_method: :second, value_method: :first %>
-          <%= f.input :equipement_2_id, required: true, collection: @equipements, label_method: :second, value_method: :first %>
-
+          <%= f.simple_fields_for :fight_fighters do |ff| %>
+            <%= ff.input :fighter_id, required: true, collection: @fighters, label_method: :second, value_method: :first %>
+            <%= ff.input :equipement_id, required: true, collection: @equipements, label_method: :second, value_method: :first %>
+          <% end %>
           <div class="form-actions">
             <%= f.button :submit, "Start the fight", class: "btn btn-primary" %>
           </div>

@@ -2,6 +2,8 @@ class Stroke < ApplicationRecord
   belongs_to :fight
   belongs_to :owner, class_name: 'Fighter'
   belongs_to :target, class_name: 'Fighter'
+  belongs_to :attack_equipement, class_name: 'Equipement'
+  belongs_to :defense_equipement, class_name: 'Equipement'
 
   after_create :run_strike
 
@@ -18,7 +20,7 @@ class Stroke < ApplicationRecord
   private
 
   def run_strike
-    update(impact: owner.attack_points)
+    update(impact: owner.attack_points + attack_equipement.attack_points - defense_equipement.defense_points)
     update(missed: true) if rand(RNG) == 1
   end
 end

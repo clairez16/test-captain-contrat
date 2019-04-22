@@ -7,6 +7,8 @@ class Fighter < ApplicationRecord
   has_many :given_strokes, class_name: 'Stroke', foreign_key: 'owner_id', dependent: :destroy
   has_many :received_strokes, class_name: 'Stroke', foreign_key: 'target_id', dependent: :destroy
 
+  has_many :fight_fighters, dependent: :destroy
+
   validates :name, :life_points, :attack_points, presence: true
   validates :name, uniqueness: true
   validates :name, length: { minimum: 3 }

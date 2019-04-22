@@ -1,10 +1,16 @@
 <h1>Winner: <%= @fight.winner.name %></h1>
 <h4>Life points: <%= @fight.winner.life_points %></h1>
 <h4>Attack points: <%= @fight.winner.attack_points %></h1>
+<h4>Equipement: Attack: <%= @fight.fight_fighters.find_by(fighter: @fight.winner).equipement.attack_points %></h1>
+<h4>Equipement: Defense: <%= @fight.fight_fighters.find_by(fighter: @fight.winner).equipement.defense_points %></h1>
+
 
 <h1>Loser: <%= @fight.loser.name %></h1>
 <h4>Life points: <%= @fight.loser.life_points %></h1>
 <h4>Attack points: <%= @fight.loser.attack_points %></h1>
+<h4>Equipement: Attack: <%= @fight.fight_fighters.find_by(fighter: @fight.loser).equipement.attack_points %></h1>
+<h4>Equipement: Defense: <%= @fight.fight_fighters.find_by(fighter: @fight.loser).equipement.defense_points %></h1>
+
 
 <% @strikes.each do |strike| %>
   <p><%= strike.decorated %></p>
