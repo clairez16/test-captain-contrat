@@ -1,13 +1,24 @@
 class FightsController < ApplicationController
   def new
-    @fight = Fight.new
     @fighters = Fighter.all.map(&:decorate_for_form)
     @equipements = Equipement.all.map(&:decorate_for_form)
+    @fight = Fight.new
+    2.times do
+      @fight.fight_fighters.build
+    end
   end
 
   def create
-    fight = Fight.create(fight_params)
-    redirect_to fight_path(fight)
+    @fight = Fight.new(fight_params)
+
+    @fighters = Fighter.all.map(&:decorate_for_form)
+    @equipements = Equipement.all.map(&:decorate_for_form)
+
+    if @fight.save
+      redirect_to fight_path(@fight)
+    else
+      render 'new'
+    end
   end
 
   def show
@@ -18,6 +29,6 @@ class FightsController < ApplicationController
   private
 
   def fight_params
-    params.require(:fight).permit(:fighter_1_id, :fighter_2_id, :equipement_1_id, :equipement_2_id)
+    params.require(:fight).permit(:name, fight_fighters_attributes: [:fighter_id, :equipement_id])
   end
 end
